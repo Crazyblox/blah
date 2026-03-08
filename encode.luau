@@ -17,7 +17,6 @@ function encode.chunk(inBuffer: buffer, inCursor: number, outBuffer: buffer, out
 	-- Read high bytes and low bytes; converts low bytes from u32 -> u24
 	local hi: number = buffer.readu32(inBuffer, inCursor)
 	local lo: number = bit32.lshift(buffer.readu16(inBuffer, inCursor + 4), 8) + buffer.readu8(inBuffer, inCursor + 6)
-	print(`Read {inCursor}: {hi}, {lo}`)
 	-- Pack 8th byte with the reserved bit from each byte
 	local bitpack: number = 
 		bit32.lshift(bit32.extract(lo, 00+res), 0) + 
